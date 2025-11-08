@@ -1,33 +1,20 @@
-# cdevops-gitea
-k8s gitea lab to take dev (sqlite based) to prod (mysql based)
+# Gitea Deployment: From Development to Production
 
-TLDR;
+In this assignment, we are taking on a basic development deployment of Gitea, a lightweight self-hosted Git service, and transforming it into production-ready deployment running on Kubernetes.
 
-```bash
-pip install ansible kubernetes
-git submodule update --init --recursive
-ansible-playbook up.yml
-```
+In the development environment, Gitea is deployed using an Ansible playbook and runs with a local SQLite database and port-forwarding, which is suitable for testing but not reliable for real usage.
 
-Wait until `kubectl get pod` shows all pods running and:
+The goal of the assignment is to upgrade this setup into a production environment by:
 
-```bash
-kubectl port-forward svc/gitea-http 3000:3000
-```
+- Deploying Gitea using Helm
+- Ensuring repository data persists
+- Configuring Gitea to use an external MariaDB (MySQL) database instead of SQLite
+- Exposing the application publicly using an Ingress and a real domain
 
-Now you should be able to access gitea in development mode.
+By completing these changes, the application becomes:
+- Durable (data survives restarts)
+- Scalable (standardized Helm deployment)
+- Secure and maintainable (real database backend)
+- Accessible over the internet
 
-The challenge is to run this in production mode.
-
-### Points to Cover
-
-## Marking
-
-|Item|Out Of|
-|--|--:|
-|use [the gitea helm](https://gitea.com/gitea/helm-gitea) to make the repository data persistent|3|
-|make gitea use external database|1|
-|Expose your gitea instance publically|3|
-|make the README easy to use and ACCURATE|3|
-|||
-|total|10|
+This README explains the steps taken to perform the migration from dev → production and provides verification output for each requirement.

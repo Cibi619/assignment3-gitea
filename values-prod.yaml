@@ -1,0 +1,26 @@
+persistence:
+  enabled: true
+  size: 10Gi
+  accessModes:
+    - ReadWriteOnce
+
+gitea:
+  config:
+    database:
+      DB_TYPE: mysql
+      HOST: gitea-mariadb.gitea-prod.svc.cluster.local:3306
+      NAME: gitea
+      USER: gitea
+      PASSWD: gitea123
+
+    server:
+      DOMAIN: "cibisharan-gitea.k3p.dev"
+      ROOT_URL: "http://cibisharan-gitea.k3p.dev/"
+      SSH_DOMAIN: "cibisharan-gitea.k3p.dev"
+
+postgresql:
+  enabled: false
+
+mariadb:
+  enabled: false
+
